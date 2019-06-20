@@ -1,4 +1,4 @@
-{% set version = '0.4-22' %}
+{% set version = '0.4-23' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -7,24 +7,22 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: proxy_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/proxy_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/proxy/proxy_{{ version }}.tar.gz
-  sha256: aa866ccbfc81253e3651963b5ba482feeb5d1a0449e818486271d79a23720e50
+  sha256: 9dd4eb0978f40e4fcb55c8a8a26266d32eff9c63ac9dfe70cf1f664ca9c3669d
 
 build:
   merge_build_host: True  # [win]
-  number: 1000
-  skip: true  # [win32]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - {{ compiler('c') }}        # [not win]
-    - {{native}}toolchain        # [win]
+    - {{ compiler('c') }}              # [not win]
+    - {{ compiler('m2w64_c') }}        # [win]
     - {{posix}}filesystem        # [win]
     - {{posix}}make
     - {{posix}}sed               # [win]
@@ -51,9 +49,22 @@ about:
 
 extra:
   recipe-maintainers:
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
-    - dbast
+    - conda-forge/r
+
+# Package: proxy
+# Type: Package
+# Title: Distance and Similarity Measures
+# Version: 0.4-23
+# Authors@R: c(person(given = "David", family = "Meyer", role = c("aut", "cre"), email = "David.Meyer@R-project.org"), person(given = "Christian", family = "Buchta", role = "aut"))
+# Description: Provides an extensible framework for the efficient calculation of auto- and cross-proximities, along with implementations of the most popular ones.
+# Depends: R (>= 3.4.0)
+# Imports: stats, utils
+# Suggests: cba
+# Collate: registry.R database.R dist.R similarities.R dissimilarities.R util.R seal.R
+# License: GPL-2
+# NeedsCompilation: yes
+# Packaged: 2019-03-05 12:32:19 UTC; meyer
+# Author: David Meyer [aut, cre], Christian Buchta [aut]
+# Maintainer: David Meyer <David.Meyer@R-project.org>
+# Repository: CRAN
+# Date/Publication: 2019-03-05 14:15:31 UTC
