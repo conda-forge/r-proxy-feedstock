@@ -1,4 +1,4 @@
-{% set version = '0.4-23' %}
+{% set version = "0.4-24" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/proxy_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/proxy/proxy_{{ version }}.tar.gz
-  sha256: 9dd4eb0978f40e4fcb55c8a8a26266d32eff9c63ac9dfe70cf1f664ca9c3669d
+  sha256: 8cff9bf036475941a7c44ba9bb5e2f6d4777d49ab3daaeb52d23f4b2af6d9c7c
 
 build:
-  merge_build_host: True  # [win]
-  number: 1
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -23,16 +23,16 @@ requirements:
   build:
     - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
-    - {{posix}}filesystem        # [win]
-    - {{posix}}make
-    - {{posix}}sed               # [win]
-    - {{posix}}coreutils         # [win]
-    - {{posix}}zip               # [win]
+    - {{ posix }}filesystem        # [win]
+    - {{ posix }}make
+    - {{ posix }}sed               # [win]
+    - {{ posix }}coreutils         # [win]
+    - {{ posix }}zip               # [win]
   host:
     - r-base
   run:
     - r-base
-    - {{native}}gcc-libs         # [win]
+    - {{ native }}gcc-libs         # [win]
 
 test:
   commands:
@@ -42,10 +42,9 @@ test:
 about:
   home: https://CRAN.R-project.org/package=proxy
   license: GPL-2
-  summary: 'Provides an extensible framework for the efficient calculation of auto- and cross-proximities,
-    along with implementations of the most popular ones. '
+  summary: 'Provides an extensible framework for the efficient calculation of auto- and cross-proximities, along with implementations of the most popular ones. '
   license_family: GPL2
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
