@@ -1,4 +1,4 @@
-{% set version = "0.4-27" %}
+{% set version = "0.4-28" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/proxy_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/proxy/proxy_{{ version }}.tar.gz
-  sha256: 249991a4c4d70ad139e93f3a24e17f161ad1ec854951813ea192daf79478563f
+  sha256: 5907a82f4b6793ec373c056f3b3b5460f231d17df1814d20976133f5ae81b8fe
 
 build:
-  number: 4
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
